@@ -1,0 +1,27 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        lo = 0
+        hi = len(nums) - 1
+        if target not in nums:
+            return -1
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            if target == nums[lo]:
+                return lo
+            elif target == nums[hi]:
+                return hi
+            elif target == nums[mid]:
+                return mid
+            else:
+                if nums[lo] <= nums[mid]:
+                    if target > nums[mid] or target < nums[lo]:
+                        lo = mid + 1
+                    else:
+                        hi = mid - 1
+                else:
+                    if target < nums[mid] or target > nums[hi]:
+                        hi = mid - 1
+                    else:
+                        lo = mid + 1
+                        
+                
